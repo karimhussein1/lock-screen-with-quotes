@@ -1,18 +1,21 @@
 # Betterlockscreen with quotes
 add a random one liner quote to your lock screen every time you use [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen) in linux
 ## Requirements
-- [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen)
-- [sxhkd](https://github.com/baskerville/sxhkd)
+- install [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen)
+- install [sxhkd](https://github.com/baskerville/sxhkd)
 - text file containing quotes or you can use this one [Quotes.txt](https://github.com/karimhussein1/quotes-on-betterlockscreen/blob/main/Quotes.txt) 
-```
-# add this to your sxhkdrc in ~/.config/sxhkd/sxhkdrc
-# use this keybinding or any other combination
-# replace Quotes.txt with the full path to your Quotes.txt file
-super + l
-  betterlockscreen -l --text "$(awk 'NF<=25 \{print $o\}' Quotes.txt | shuf -n 1)"
-```
 
-  
+#### just copy this block of code in your shell and it will automate the the process
+```
+# first clone this repository with
+git clone https://github.com/karimhussein1/add-quotes-to-your-lock-screen.git
+cd add-quotes-to-your-lock-screen
+# updating sxhkd, you can change this keybinding!
+echo "super + l 
+  betterlockscreen -l --text \"\$(awk 'NF<=25 \{print \$o\}' $(pwd)/Quotes.txt | shuf -n 1)\"" >> ~/.config/sxhkd/sxhkdrc
+# then restart sxhkd
+pkill -USR1 -x sxhkd
+```
 
 quotes resources
 - https://www.region10.org/
